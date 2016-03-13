@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     TextView update_text;
     Context context;
     PendingIntent pending_intent;
-    int choose_sound;
+    int choose_sound = 0 ;
 
 
     @Override
