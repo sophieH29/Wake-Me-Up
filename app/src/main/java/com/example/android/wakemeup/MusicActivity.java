@@ -34,7 +34,7 @@ public class MusicActivity extends AppCompatActivity {
     public void okButtonClick(View v){
 
         Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra("whale_choice",choose_sound);
+        intent.putExtra("music_choice", choose_sound);
         setResult(RESULT_OK, intent);
         finish();
 

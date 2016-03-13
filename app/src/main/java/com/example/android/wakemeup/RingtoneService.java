@@ -37,10 +37,10 @@ public class RingtoneService extends Service {
         // fetch the extra string from the alarm on/alarm off values
         String state = intent.getExtras().getString("extra");
         // fetch the whale choice integer values
-        Integer whale_sound_choice = intent.getExtras().getInt("whale_choice");
+        Integer music_choice = intent.getExtras().getInt("music_choice");
 
         Log.e("Ringtone extra is ", state);
-        Log.e("Whale choice is ", whale_sound_choice.toString());
+        Log.e("Whale choice is ", music_choice.toString());
 
         // put the notification here, test it out
 
@@ -62,8 +62,6 @@ public class RingtoneService extends Service {
                 .setContentIntent(pending_intent_main_activity)
                 .setAutoCancel(true)
                 .build();
-
-
 
 
         // this converts the extra strings from the intent
@@ -95,7 +93,7 @@ public class RingtoneService extends Service {
             // set up the start command for the notification
             notify_manager.notify(0, notification_popup);
 
-            playMusic(whale_sound_choice);
+            playMusic(music_choice);
 
         }
 
@@ -110,36 +108,6 @@ public class RingtoneService extends Service {
             this.isRunning = false;
             this.startId = 0;
        }
-//
-//        // these are if the user presses random buttons
-//        // just to bug-proof the app
-//        // if there is no music playing, and the user pressed "alarm off"
-//        // do nothing
-//        else if (!this.isRunning && startId == 0) {
-//            Log.e("there is no music, ", "and you want end");
-//
-//            this.isRunning = false;
-//            this.startId = 0;
-//
-//        }
-//
-//        // if there is music playing and the user pressed "alarm on"
-//        // do nothing
-//        else if (this.isRunning && startId == 1) {
-//            Log.e("there is music, ", "and you want start");
-//
-//            this.isRunning = true;
-//            this.startId = 1;
-//
-//        }
-//
-//        // can't think of anything else, just to catch the odd event
-//        else {
-//            Log.e("else ", "somehow you reached this");
-//
-//        }
-
-
 
         return START_NOT_STICKY;
     }
@@ -157,33 +125,41 @@ public class RingtoneService extends Service {
     private void playMusic(int musicChoice){
 
         switch (musicChoice){
-            case 0: media_song = MediaPlayer.create(this, R.raw.humpback_bubblenet_and_vocals);
+            case 0: media_song = MediaPlayer.create(this, R.raw.ac_dc_rock_or_bust);
                 break;
-            case 1: media_song = MediaPlayer.create(this, R.raw.humpback_contact_call_moo);
+            case 1: media_song = MediaPlayer.create(this, R.raw.ac_dc_the_jack);
                 break;
-            case 2 : media_song = MediaPlayer.create(this, R.raw.humpback_contact_call_whup);
+            case 2 : media_song = MediaPlayer.create(this, R.raw.ac_dc_money_made);
                 break;
-            case 3: media_song = MediaPlayer.create(this, R.raw.humpback_feeding_call);
+            case 3: media_song = MediaPlayer.create(this, R.raw.airbourne_too_much);
                 break;
-            case 4: media_song = MediaPlayer.create(this, R.raw.humpback_flipper_splash);
+            case 4: media_song = MediaPlayer.create(this, R.raw.alt_j_hunger_of_the_pine);
                 break;
-            case 5: media_song = MediaPlayer.create(this, R.raw.humpback_tail_slaps_with_propeller_whine);
+            case 5: media_song = MediaPlayer.create(this, R.raw.alt_j_fitzpleasure);
                 break;
-            case 6: media_song = MediaPlayer.create(this, R.raw.humpback_whale_song);
+            case 6: media_song = MediaPlayer.create(this, R.raw.banks_waiting_game);
                 break;
-            case 7:  media_song = MediaPlayer.create(this, R.raw.humpback_whale_song_with_outboard_engine_noise);
+            case 7:  media_song = MediaPlayer.create(this, R.raw.ben_howard_keep_your_head_up);
                 break;
-            case 8: media_song = MediaPlayer.create(this, R.raw.humpback_wheeze_blows);
+            case 8: media_song = MediaPlayer.create(this, R.raw.beyonce_7_11);
                 break;
-            case 9: media_song = MediaPlayer.create(this, R.raw.killerwhale_echolocation_clicks);
+            case 9: media_song = MediaPlayer.create(this, R.raw.billy_squire_the_stroke);
                 break;
-            case 10:  media_song = MediaPlayer.create(this, R.raw.killerwhale_offshore);
+            case 10:  media_song = MediaPlayer.create(this, R.raw.black_sabbath_war_pigs);
                 break;
-            case 11: media_song = MediaPlayer.create(this, R.raw.killerwhale_resident);
+            case 11: media_song = MediaPlayer.create(this, R.raw.black_sabbath_paranoid);
                 break;
-            case 12: media_song = MediaPlayer.create(this, R.raw.killerwhale_transient);
+            case 12: media_song = MediaPlayer.create(this, R.raw.david_dallas_running);
                 break;
-            default: media_song = MediaPlayer.create(this, R.raw.killerwhale_resident);
+            case 13:  media_song = MediaPlayer.create(this, R.raw.disclosure_you_and_me);
+                break;
+            case 14: media_song = MediaPlayer.create(this, R.raw.the_forest_rangers_john_the_revelator);
+                break;
+            case 15: media_song = MediaPlayer.create(this, R.raw.cellos_highway_to_hell);
+                break;
+            case 16: media_song = MediaPlayer.create(this, R.raw.cellos_wake_me_up);
+                break;
+            default: media_song = MediaPlayer.create(this, R.raw.black_sabbath_war_pigs);
                 break;
         }
 

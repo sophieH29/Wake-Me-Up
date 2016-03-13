@@ -17,6 +17,8 @@
         android:id="@+id/timePicker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="50dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -26,9 +28,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/update_text"
+        android:layout_below="@+id/timePicker"
         android:clickable="true"
-        android:text="Alarm on"
+        android:text="@string/alarm_on"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <Button
@@ -37,26 +39,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/update_text"
-        android:clickable="true"
-        android:text="Alarm off"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <TextView
-        android:id="@+id/update_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_below="@+id/timePicker"
-        android:layout_centerHorizontal="true"
-        android:text="Did you set the alarm?"
+        android:clickable="true"
+        android:text="@string/alarm_off"
         android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <Spinner
-        android:id="@+id/richard_spinner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/alarm_on"
-        android:layout_centerHorizontal="true" />
-
 
 </RelativeLayout>

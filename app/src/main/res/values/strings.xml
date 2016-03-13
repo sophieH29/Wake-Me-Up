@@ -3,22 +3,28 @@
     <string name="action_settings">Settings</string>
 
     <string-array name="whale_array">
-        <item>Humpback bubble net</item>
-        <item>Humpback contact Call Moo</item>
-        <item>Humpback contact Call Whup</item>
-        <item>Humpback feeding Call</item>
-        <item>Humpback flipper splash</item>
-        <item>Humpback Tail slaps</item>
-        <item>Humpback whale song</item>
-        <item>Humpback whale song with outboard engine</item>
-        <item>Humpback wheeze blows</item>
-        <item>Killer whale echolocation clicks</item>
-        <item>Killer whale offshore</item>
-        <item>Killer whale resident</item>
-        <item>Killer whale transient</item>
+        <item>AC/DC - Rock or Bust</item>
+        <item>AC/DC - The Jack</item>
+        <item>AC/DC - Money Made</item>
+        <item>Airbourne - Too Much</item>
+        <item>Alt-J - Hunger Of The Pine</item>
+        <item>Alt-J - Fitzpleasure</item>
+        <item>Banks - Waiting Game</item>
+        <item>Ben Howard - Keep Your Head Up</item>
+        <item>Beyonce - 7-11</item>
+        <item>Billy Squire - The Stroke</item>
+        <item>Black Sabbath- War Pigs</item>
+        <item>Black Sabbath - Paranoid</item>
+        <item>David Dallas - Running</item>
+        <item>Disclosure - You and Me</item>
+        <item>The Forest Rangers - John the Revelator</item>
+        <item>2CELLOS - Highway to Hell</item>
+        <item>2CELLOS - Wake Me Up</item>
     </string-array>
     <string name="title_activity_main2">Main2Activity</string>
     <string name="OK">OK</string>
     <string name="Cancel">Cancel</string>
+    <string name="alarm_on">Alarm on</string>
+    <string name="alarm_off">Alarm off</string>
 
 </resources>
