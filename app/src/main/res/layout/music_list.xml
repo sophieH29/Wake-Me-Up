@@ -33,6 +33,7 @@
             android:layout_height="wrap_content"
             android:clickable="true"
             android:text="@string/OK"
+            android:onClick="okButtonClick"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <Button
@@ -42,6 +43,7 @@
             android:layout_height="wrap_content"
             android:clickable="true"
             android:text="@string/Cancel"
+            android:onClick="cancelButtonClick"
             android:textAppearance="?android:attr/textAppearanceLarge" />
     </LinearLayout>
 

@@ -88,7 +88,6 @@ public class RingtoneService extends Service {
         // if there is no music playing, and the user pressed "alarm on"
         // music should start playing
         if (!this.isRunning && startId == 1) {
-            Log.e("there is no music, ", "and you want start");
 
             this.isRunning = true;
             this.startId = 0;
@@ -96,158 +95,13 @@ public class RingtoneService extends Service {
             // set up the start command for the notification
             notify_manager.notify(0, notification_popup);
 
-
-
-            // play the whale sound depending on the passed whale choice id
-
-            if (whale_sound_choice == 0) {
-                // play a randomly picked audio file
-
-                int minimum_number = 1;
-                int maximum_number = 13;
-
-                Random random_number = new Random();
-                int whale_number = random_number.nextInt(maximum_number + minimum_number);
-                Log.e("random number is " , String.valueOf(whale_number));
-
-
-                if (whale_number == 1) {
-                    media_song = MediaPlayer.create(this, R.raw.humpback_bubblenet_and_vocals);
-                    media_song.start();
-                }
-                else if (whale_number == 2) {
-                    // create an instance of the media player
-                    media_song = MediaPlayer.create(this, R.raw.humpback_contact_call_moo);
-                    // start the ringtone
-                    media_song.start();
-                }
-                else if (whale_number == 3) {
-                    media_song = MediaPlayer.create(this, R.raw.humpback_contact_call_whup);
-                    media_song.start();
-                }
-                else if (whale_number == 4) {
-                    media_song = MediaPlayer.create(this, R.raw.humpback_feeding_call);
-                    media_song.start();
-                }
-                else if (whale_number == 5) {
-                    media_song = MediaPlayer.create(this, R.raw.humpback_flipper_splash);
-                    media_song.start();
-                }
-                else if (whale_number == 6) {
-                    media_song = MediaPlayer.create(this, R.raw.humpback_tail_slaps_with_propeller_whine);
-                    media_song.start();
-                }
-                else if (whale_number == 7) {
-                    media_song = MediaPlayer.create(this, R.raw.humpback_whale_song);
-                    media_song.start();
-                }
-                else if (whale_number == 8) {
-                    media_song = MediaPlayer.create(this, R.raw.humpback_whale_song_with_outboard_engine_noise);
-                    media_song.start();
-                }
-                else if (whale_number == 9) {
-                    media_song = MediaPlayer.create(this, R.raw.humpback_wheeze_blows);
-                    media_song.start();
-                }
-                else if (whale_number == 10) {
-                    media_song = MediaPlayer.create(this, R.raw.killerwhale_echolocation_clicks);
-                    media_song.start();
-                }
-                else if (whale_number == 11) {
-                    media_song = MediaPlayer.create(this, R.raw.killerwhale_offshore);
-                    media_song.start();
-                }
-                else if (whale_number == 12) {
-                    media_song = MediaPlayer.create(this, R.raw.killerwhale_resident);
-                    media_song.start();
-                }
-                else if (whale_number == 13) {
-                    media_song = MediaPlayer.create(this, R.raw.killerwhale_transient);
-                    media_song.start();
-                }
-                else {
-                    media_song = MediaPlayer.create(this, R.raw.killerwhale_resident);
-                    media_song.start();
-                }
-
-
-            }
-            else if (whale_sound_choice == 1) {
-                // create an instance of the media player
-                media_song = MediaPlayer.create(this, R.raw.humpback_bubblenet_and_vocals);
-                // start the ringtone
-                media_song.start();
-            }
-            else if (whale_sound_choice == 2) {
-                // create an instance of the media player
-                media_song = MediaPlayer.create(this, R.raw.humpback_contact_call_moo);
-                // start the ringtone
-                media_song.start();
-            }
-            else if (whale_sound_choice == 3) {
-                media_song = MediaPlayer.create(this, R.raw.humpback_contact_call_whup);
-                media_song.start();
-            }
-            else if (whale_sound_choice == 4) {
-                media_song = MediaPlayer.create(this, R.raw.humpback_feeding_call);
-                media_song.start();
-            }
-            else if (whale_sound_choice == 5) {
-                media_song = MediaPlayer.create(this, R.raw.humpback_flipper_splash);
-                media_song.start();
-            }
-            else if (whale_sound_choice == 6) {
-                media_song = MediaPlayer.create(this, R.raw.humpback_tail_slaps_with_propeller_whine);
-                media_song.start();
-            }
-            else if (whale_sound_choice == 7) {
-                media_song = MediaPlayer.create(this, R.raw.humpback_whale_song);
-                media_song.start();
-            }
-            else if (whale_sound_choice == 8) {
-                media_song = MediaPlayer.create(this, R.raw.humpback_whale_song_with_outboard_engine_noise);
-                media_song.start();
-            }
-            else if (whale_sound_choice == 9) {
-                media_song = MediaPlayer.create(this, R.raw.humpback_wheeze_blows);
-                media_song.start();
-            }
-            else if (whale_sound_choice == 10) {
-                media_song = MediaPlayer.create(this, R.raw.killerwhale_echolocation_clicks);
-                media_song.start();
-            }
-            else if (whale_sound_choice == 11) {
-                media_song = MediaPlayer.create(this, R.raw.killerwhale_offshore);
-                media_song.start();
-            }
-            else if (whale_sound_choice == 12) {
-                media_song = MediaPlayer.create(this, R.raw.killerwhale_resident);
-                media_song.start();
-            }
-            else if (whale_sound_choice == 13) {
-                media_song = MediaPlayer.create(this, R.raw.killerwhale_transient);
-                media_song.start();
-            }
-            else {
-                media_song = MediaPlayer.create(this, R.raw.killerwhale_resident);
-                media_song.start();
-            }
-
-
-
-
-
-
-
-
-
+            playMusic(whale_sound_choice);
 
         }
 
         // if there is music playing, and the user pressed "alarm off"
         // music should stop playing
         else if (this.isRunning && startId == 0) {
-            Log.e("there is music, ", "and you want end");
 
             // stop the ringtone
             media_song.stop();
@@ -255,35 +109,35 @@ public class RingtoneService extends Service {
 
             this.isRunning = false;
             this.startId = 0;
-        }
-
-        // these are if the user presses random buttons
-        // just to bug-proof the app
-        // if there is no music playing, and the user pressed "alarm off"
-        // do nothing
-        else if (!this.isRunning && startId == 0) {
-            Log.e("there is no music, ", "and you want end");
-
-            this.isRunning = false;
-            this.startId = 0;
-
-        }
-
-        // if there is music playing and the user pressed "alarm on"
-        // do nothing
-        else if (this.isRunning && startId == 1) {
-            Log.e("there is music, ", "and you want start");
-
-            this.isRunning = true;
-            this.startId = 1;
-
-        }
-
-        // can't think of anything else, just to catch the odd event
-        else {
-            Log.e("else ", "somehow you reached this");
-
-        }
+       }
+//
+//        // these are if the user presses random buttons
+//        // just to bug-proof the app
+//        // if there is no music playing, and the user pressed "alarm off"
+//        // do nothing
+//        else if (!this.isRunning && startId == 0) {
+//            Log.e("there is no music, ", "and you want end");
+//
+//            this.isRunning = false;
+//            this.startId = 0;
+//
+//        }
+//
+//        // if there is music playing and the user pressed "alarm on"
+//        // do nothing
+//        else if (this.isRunning && startId == 1) {
+//            Log.e("there is music, ", "and you want start");
+//
+//            this.isRunning = true;
+//            this.startId = 1;
+//
+//        }
+//
+//        // can't think of anything else, just to catch the odd event
+//        else {
+//            Log.e("else ", "somehow you reached this");
+//
+//        }
 
 
 
@@ -297,6 +151,43 @@ public class RingtoneService extends Service {
 
         super.onDestroy();
         this.isRunning = false;
+    }
+
+    // Play alarm music depending on user choice
+    private void playMusic(int musicChoice){
+
+        switch (musicChoice){
+            case 0: media_song = MediaPlayer.create(this, R.raw.humpback_bubblenet_and_vocals);
+                break;
+            case 1: media_song = MediaPlayer.create(this, R.raw.humpback_contact_call_moo);
+                break;
+            case 2 : media_song = MediaPlayer.create(this, R.raw.humpback_contact_call_whup);
+                break;
+            case 3: media_song = MediaPlayer.create(this, R.raw.humpback_feeding_call);
+                break;
+            case 4: media_song = MediaPlayer.create(this, R.raw.humpback_flipper_splash);
+                break;
+            case 5: media_song = MediaPlayer.create(this, R.raw.humpback_tail_slaps_with_propeller_whine);
+                break;
+            case 6: media_song = MediaPlayer.create(this, R.raw.humpback_whale_song);
+                break;
+            case 7:  media_song = MediaPlayer.create(this, R.raw.humpback_whale_song_with_outboard_engine_noise);
+                break;
+            case 8: media_song = MediaPlayer.create(this, R.raw.humpback_wheeze_blows);
+                break;
+            case 9: media_song = MediaPlayer.create(this, R.raw.killerwhale_echolocation_clicks);
+                break;
+            case 10:  media_song = MediaPlayer.create(this, R.raw.killerwhale_offshore);
+                break;
+            case 11: media_song = MediaPlayer.create(this, R.raw.killerwhale_resident);
+                break;
+            case 12: media_song = MediaPlayer.create(this, R.raw.killerwhale_transient);
+                break;
+            default: media_song = MediaPlayer.create(this, R.raw.killerwhale_resident);
+                break;
+        }
+
+        media_song.start();
     }
 
 }

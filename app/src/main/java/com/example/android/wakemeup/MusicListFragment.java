@@ -68,6 +68,10 @@ public class MusicListFragment extends ListFragment {
             setSelectedIndex(-1);
         }
 
+        // send music choice to Music Activity
+        MusicActivity musicActivity = (MusicActivity)getActivity();
+        musicActivity.setMusicChoice(position);
+
         adapter.notifyDataSetChanged();
 
         TextView textView = (TextView) view.findViewById(R.id.txtitem);

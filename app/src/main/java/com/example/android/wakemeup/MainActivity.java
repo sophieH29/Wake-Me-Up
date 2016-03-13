@@ -1,13 +1,11 @@
 package com.example.android.wakemeup;
 
 import android.app.AlarmManager;
-import android.app.Instrumentation;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -31,13 +29,15 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     TextView update_text;
     Context context;
     PendingIntent pending_intent;
-    int choose_whale_sound;
+    int choose_sound;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         this.context = this;
@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, MusicActivity.class);
-                startActivityForResult(intent, RESULT_OK);
+                startActivityForResult(intent, 1);
             }
         });
 
@@ -78,7 +78,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         spinner.setAdapter(adapter);
         // Set an onclick listener to the onItemSelected method
         spinner.setOnItemSelectedListener(this);
-
 
         // initialize start button
         Button alarm_on = (Button) findViewById(R.id.alarm_on);
@@ -120,8 +119,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
                 // put in an extra int into my_intent
                 // tells the clock that you want a certain value from the drop-down menu/spinner
-                my_intent.putExtra("whale_choice", choose_whale_sound);
-                Log.e("The whale id is" , String.valueOf(choose_whale_sound));
+                my_intent.putExtra("whale_choice", choose_sound);
+                Log.e("The whale id is" , String.valueOf(choose_sound));
 
                 // create a pending intent that delays the intent
                 // until the specified calendar time
@@ -159,8 +158,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 my_intent.putExtra("extra", "alarm off");
                 // also put an extra int into the alarm off section
                 // to prevent crashes in a Null Pointer Exception
-                my_intent.putExtra("whale_choice", choose_whale_sound);
-
+                my_intent.putExtra("whale_choice", choose_sound);
 
                 // stop the ringtone
                 sendBroadcast(my_intent);
@@ -195,6 +193,16 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
     @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1) {
+            if(resultCode == RESULT_OK){
+                choose_sound = data.getIntExtra("whale_choice", 0);
+            }
+        }
+    }
+
+    @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         // An item was selected. You can retrieve the selected item using
         // parent.getItemAtPosition(pos)
@@ -202,9 +210,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         // outputting whatever id the user has selected
         //Toast.makeText(parent.getContext(), "the spinner item is "
         //        + id, Toast.LENGTH_SHORT).show();
-        choose_whale_sound = (int) id;
-
-
+        choose_sound = (int) id;
     }
 
     @Override
