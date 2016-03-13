@@ -9,18 +9,13 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.IBinder;
-import android.support.annotation.Nullable;
 import android.util.Log;
-import android.widget.Toast;
-
-import java.security.Provider;
-import java.util.Random;
 
 
 public class RingtoneService extends Service {
 
     MediaPlayer media_song;
-    int startId;
+    Boolean isAlarmOn;
     boolean isRunning;
 
 
@@ -32,17 +27,12 @@ public class RingtoneService extends Service {
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Log.i("LocalService", "Received start id " + startId + ": " + intent);
 
         // fetch the extra string from the alarm on/alarm off values
-        String state = intent.getExtras().getString("extra");
+       isAlarmOn = intent.getExtras().getBoolean("alarm_on", false);
+
         // fetch the whale choice integer values
-        Integer music_choice = intent.getExtras().getInt("music_choice");
-
-        Log.e("Ringtone extra is ", state);
-        Log.e("Whale choice is ", music_choice.toString());
-
-        // put the notification here, test it out
+        int musicChoice = intent.getExtras().getInt("music_choice", 0);
 
         // notification
         // set up the notification service
@@ -63,50 +53,29 @@ public class RingtoneService extends Service {
                 .setAutoCancel(true)
                 .build();
 
-
-        // this converts the extra strings from the intent
-        // to start IDs, values 0 or 1
-        assert state != null;
-        switch (state) {
-            case "alarm on":
-                startId = 1;
-                break;
-            case "alarm off":
-                startId = 0;
-                Log.e("Start ID is ", state);
-                break;
-            default:
-                startId = 0;
-                break;
-        }
-
-
-        // if else statements
-
-        // if there is no music playing, and the user pressed "alarm on"
+         // if there is no music playing, and the user pressed "alarm on"
         // music should start playing
-        if (!this.isRunning && startId == 1) {
+        if (!this.isRunning && isAlarmOn) {
 
             this.isRunning = true;
-            this.startId = 0;
+            this.isAlarmOn = false;
 
             // set up the start command for the notification
             notify_manager.notify(0, notification_popup);
 
-            playMusic(music_choice);
-
+            playMusic(musicChoice);
         }
 
         // if there is music playing, and the user pressed "alarm off"
         // music should stop playing
-        else if (this.isRunning && startId == 0) {
+        else if (this.isRunning && !isAlarmOn) {
 
             // stop the ringtone
             media_song.stop();
             media_song.reset();
 
             this.isRunning = false;
-            this.startId = 0;
+            this.isAlarmOn = false;
        }
 
         return START_NOT_STICKY;
@@ -119,6 +88,7 @@ public class RingtoneService extends Service {
 
         super.onDestroy();
         this.isRunning = false;
+        this.isAlarmOn = true;
     }
 
     // Play alarm music depending on user choice

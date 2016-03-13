@@ -31,6 +31,8 @@
             style="?android:attr/buttonBarButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/marginLeft"
+            android:layout_marginLeft="@dimen/marginLeft"
             android:clickable="true"
             android:text="@string/OK"
             android:onClick="okButtonClick"
@@ -39,6 +41,8 @@
         <Button
             android:id="@+id/alarm_off"
             style="?android:attr/buttonBarButtonStyle"
+            android:layout_marginStart="150dp"
+            android:layout_marginLeft="150dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:clickable="true"

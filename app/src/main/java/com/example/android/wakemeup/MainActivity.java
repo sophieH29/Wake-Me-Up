@@ -58,24 +58,24 @@ public class MainActivity extends AppCompatActivity {
         final Calendar calendar = Calendar.getInstance();
 
         // create an intent to the Alarm Receiver class
-        final Intent my_intent = new Intent(this.context, AlarmReceiver.class);
+        final Intent myIntent = new Intent(this.context, AlarmReceiver.class);
 
 
         // initialize start button
-        final Button alarm_on = (Button) findViewById(R.id.alarm_on);
+        final Button alarmOn = (Button) findViewById(R.id.alarm_on);
         // initialize the stop button
-        final Button alarm_off = (Button) findViewById(R.id.alarm_off);
+        final Button alarmOff = (Button) findViewById(R.id.alarm_off);
 
         // create an onClick listener to start the alarm
-        alarm_on.setOnClickListener(new View.OnClickListener() {
+        alarmOn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                alarm_on.setBackgroundColor(getResources().getColor(R.color.colorAccent));
-                alarm_on.setTextColor(Color.WHITE);
+                alarmOn.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+                alarmOn.setTextColor(Color.WHITE);
 
-                alarm_off.setBackgroundColor(getResources().getColor(R.color.lightGray));
-                alarm_off.setTextColor(Color.BLACK);
+                alarmOff.setBackgroundColor(getResources().getColor(R.color.lightGray));
+                alarmOff.setTextColor(Color.BLACK);
 
                 // setting calendar instance with the hour and minute that we picked
                 // on the time picker
@@ -107,17 +107,16 @@ public class MainActivity extends AppCompatActivity {
 
                 // put in extra string into my_intent
                 // tells the clock that you pressed the "alarm on" button
-                my_intent.putExtra("extra", "alarm on");
+                myIntent.putExtra("alarm_on", true);
 
                 // put in an extra int into my_intent
                 // tells the clock that you want a certain value from the drop-down menu/spinner
-                my_intent.putExtra("music_choice", choose_sound);
-                Log.e("The whale id is" , String.valueOf(choose_sound));
+                myIntent.putExtra("music_choice", choose_sound);
 
                 // create a pending intent that delays the intent
                 // until the specified calendar time
                 pending_intent = PendingIntent.getBroadcast(MainActivity.this, 0,
-                        my_intent, PendingIntent.FLAG_UPDATE_CURRENT);
+                        myIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
                 // set the alarm manager
                 alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
@@ -125,37 +124,35 @@ public class MainActivity extends AppCompatActivity {
 
             }
 
-
-
         });
 
        // create an onClick listener to stop the alarm or undo an alarm set
 
-        alarm_off.setOnClickListener(new View.OnClickListener() {
+        alarmOff.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                alarm_off.setBackgroundColor(getResources().getColor(R.color.colorAccent));
-                alarm_off.setTextColor(Color.WHITE);
+                alarmOff.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+                alarmOff.setTextColor(Color.WHITE);
 
-                alarm_on.setBackgroundColor(getResources().getColor(R.color.lightGray));
-                alarm_on.setTextColor(Color.BLACK);
+                alarmOn.setBackgroundColor(getResources().getColor(R.color.lightGray));
+                alarmOn.setTextColor(Color.BLACK);
 
                 // method that changes the update text Textbox
-                showToast("Alarm off!");
+                showToast("Alarm OFF!");
 
                 // cancel the alarm
                 alarmManager.cancel(pending_intent);
 
                 // put extra string into my_intent
                 // tells the clock that you pressed the "alarm off" button
-                my_intent.putExtra("extra", "alarm off");
+                myIntent.putExtra("alarm_on", false);
                 // also put an extra int into the alarm off section
                 // to prevent crashes in a Null Pointer Exception
-                my_intent.putExtra("music_choice", choose_sound);
+                myIntent.putExtra("music_choice", choose_sound);
 
                 // stop the ringtone
-                sendBroadcast(my_intent);
+                sendBroadcast(myIntent);
             }
         });
     }

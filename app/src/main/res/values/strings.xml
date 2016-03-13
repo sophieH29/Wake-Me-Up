@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Whale Alarm Clock</string>
+    <string name="app_name">Wake Me Up</string>
     <string name="action_settings">Settings</string>
 
     <string-array name="whale_array">
@@ -21,7 +21,6 @@
         <item>2CELLOS - Highway to Hell</item>
         <item>2CELLOS - Wake Me Up</item>
     </string-array>
-    <string name="title_activity_main2">Main2Activity</string>
     <string name="OK">OK</string>
     <string name="Cancel">Cancel</string>
     <string name="alarm_on">Alarm on</string>
