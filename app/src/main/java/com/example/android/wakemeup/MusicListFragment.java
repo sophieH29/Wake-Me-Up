@@ -1,7 +1,6 @@
 package com.example.android.wakemeup;
 
 import android.app.ListFragment;
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,49 +16,65 @@ import android.widget.Toast;
  */
 public class MusicListFragment extends ListFragment {
 
-    protected ArrayAdapter arrayAdapter;
-
-    @Override
-//    public View onCreateView(LayoutInflater inflater,
-//                              ViewGroup container,  Bundle savedInstanceState) {
-
-
-//        Context context = getActivity();
-//        ArrayAdapter<CharSequence> fromResource = arrayAdapter.createFromResource(context, R.array.whale_array, R.layout.music_list);
-//        ListView musicList = (ListView)getActivity().findViewById(R.id.listview_fragment);
-//        musicList.setAdapter(fromResource);
-
-
-//
+    private ArrayAdapter<String> adapter;
+    private int selectedIndex = -1;
+    private RadioButton listRadioButton = null;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.music_list, container, false);
+
         // Create an array of string to be data source of the ListFragment
-        String[] datasource={"English","French","Khmer","Japanese","Russian","Chinese"};
+        String[] datasource = getResources().getStringArray(R.array.whale_array);
+
         // Create ArrayAdapter object to wrap the data source
-        ArrayAdapter<String> adapter=new ArrayAdapter<String>(getActivity(),R.layout.music_item,R.id.txtitem,datasource);
+        adapter = new ArrayAdapter<>(getActivity(), R.layout.music_item, R.id.txtitem, datasource);
+
         // Bind adapter to the ListFragment
         setListAdapter(adapter);
-        //  Retain the ListFragment instance across Activity re-creation
+
+        // Retain the ListFragment instance across Activity re-creation
         setRetainInstance(true);
 
-        //listRadioButton = (RadioButton)getActivity().findViewById(R.id.radio_button);
         return rootView;
     }
-
-//    public void onListItemClick(ListView l, View view, int position, long id){
-//        ViewGroup viewg=(ViewGroup)view;
-//        TextView tv=(TextView)viewg.findViewById(R.id.txtitem);
-//        Toast.makeText(getActivity(), tv.getText().toString(), Toast.LENGTH_LONG).show();
-//
-//    }
-
-
-
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+    }
+
+    @Override
+    public void onListItemClick(ListView listView, View view, int position, long id) {
+
+        super.onListItemClick(listView, view, position, id);
+        setSelectedIndex(position);
+
+        if (listRadioButton != null) listRadioButton.setChecked(false);
+
+        listRadioButton = (RadioButton) view.findViewById(R.id.radio_button);
+
+        if (selectedIndex == position) {
+            listRadioButton.setChecked(true);
+        } else {
+            listRadioButton.setChecked(false);
+        }
+
+        if (listRadioButton.isChecked()) {
+            setSelectedIndex(listView.indexOfChild(listView));
+        } else {
+            listRadioButton = null;
+            setSelectedIndex(-1);
+        }
+
+        adapter.notifyDataSetChanged();
+
+        TextView textView = (TextView) view.findViewById(R.id.txtitem);
+        Toast.makeText(getActivity(), textView.getText().toString(), Toast.LENGTH_SHORT).show();
+    }
+
+    private void setSelectedIndex(int index) {
+        selectedIndex = index;
     }
 }

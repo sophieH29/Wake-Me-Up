@@ -19,5 +19,7 @@
         <item>Killer whale transient</item>
     </string-array>
     <string name="title_activity_main2">Main2Activity</string>
+    <string name="OK">OK</string>
+    <string name="Cancel">Cancel</string>
 
 </resources>

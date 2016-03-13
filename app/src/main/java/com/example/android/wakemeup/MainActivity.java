@@ -1,6 +1,7 @@
 package com.example.android.wakemeup;
 
 import android.app.AlarmManager;
+import android.app.Instrumentation;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
@@ -46,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, MusicActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent, RESULT_OK);
             }
         });
 

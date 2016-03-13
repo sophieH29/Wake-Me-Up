@@ -14,7 +14,9 @@
             android:id="@+id/radio_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="onClickRadioButton"
+            android:checked="false"
+            android:clickable="false"
+            android:focusable="false"
             android:textAppearance="?android:textAppearanceMedium" />
 
         <TextView
@@ -22,7 +24,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:padding="10dp"></TextView>
+            android:layout_marginStart="10dp"
+            android:padding="10dp" />
 
 
     </LinearLayout>
