@@ -26,7 +26,7 @@ public class CaptchaActivity extends AppCompatActivity {
     private void generateCaptchaImage(){
 
         int min = 0;
-        int max = 4;
+        int max = 9;
 
         Random r = new Random();
         randomNumber = r.nextInt(max - min + 1) + min;
@@ -44,6 +44,16 @@ public class CaptchaActivity extends AppCompatActivity {
             case 3: generatedCaptcha = R.drawable.captcha4;
                 break;
             case 4: generatedCaptcha = R.drawable.captcha5;
+                break;
+            case 5: generatedCaptcha = R.drawable.captcha6;
+                break;
+            case 6: generatedCaptcha = R.drawable.captcha7;
+                break;
+            case 7: generatedCaptcha = R.drawable.captcha8;
+                break;
+            case 8: generatedCaptcha = R.drawable.captcha9;
+                break;
+            case 9: generatedCaptcha = R.drawable.captcha10;
                 break;
             default:generatedCaptcha = R.drawable.captcha1;
                 break;
@@ -64,7 +74,6 @@ public class CaptchaActivity extends AppCompatActivity {
             Intent intent = new Intent(this, MainActivity.class);
             setResult(RESULT_OK, intent);
             finish();
-
         }
         else {
 
