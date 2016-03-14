@@ -20,8 +20,15 @@
         </activity>
         <activity
             android:name=".MusicActivity"
-            android:label="Music List"
-            android:parentActivityName=".MainActivity"
+            android:label="@string/music_list"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity
+            android:name=".CaptchaActivity"
+            android:label="@string/captcha_view_label"
             android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -61,7 +60,6 @@ public class MainActivity extends AppCompatActivity {
         // create an intent to the Alarm Receiver class
         myIntent = new Intent(this.context, AlarmReceiver.class);
 
-
         // initialize start button
         final Button alarmOn = (Button) findViewById(R.id.alarm_on);
         // initialize the stop button
@@ -90,12 +88,12 @@ public class MainActivity extends AppCompatActivity {
                 // convert the int values to strings
                 String hour_string = String.valueOf(hour);
                 String minute_string = String.valueOf(minute);
-                String timeSymbol = "AM";
+                String timeSymbol = getString(R.string.am);
 
                 // convert 24-hour time to 12-hour time
                 if (hour > 12) {
                     hour_string = String.valueOf(hour - 12);
-                    timeSymbol = "PM";
+                    timeSymbol = getString(R.string.pm);
                 }
 
                 if (minute < 10) {
@@ -108,11 +106,11 @@ public class MainActivity extends AppCompatActivity {
 
                 // put in extra string into my_intent
                 // tells the clock that you pressed the "alarm on" button
-                myIntent.putExtra("alarm_on", true);
+                myIntent.putExtra(getString(R.string.alarm_on_extra), true);
 
                 // put in an extra int into my_intent
                 // tells the clock that you want a certain value from the drop-down menu/spinner
-                myIntent.putExtra("music_choice", choose_sound);
+                myIntent.putExtra(getString(R.string.music_choice_extra), choose_sound);
 
                 // create a pending intent that delays the intent
                 // until the specified calendar time
@@ -140,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
                 alarmOn.setTextColor(Color.BLACK);
 
                 // method that changes the update text Textbox
-                showToast("Alarm OFF!");
+                showToast(getString(R.string.alarm_off));
 
                 Intent intent = new Intent(context, CaptchaActivity.class);
                 startActivityForResult(intent, 2);
@@ -179,24 +177,23 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1) {
             if(resultCode == RESULT_OK){
-                choose_sound = data.getIntExtra("music_choice", 0);
+                choose_sound = data.getIntExtra(getString(R.string.music_choice_extra), 0);
             }
         }
         else  if (requestCode == 2) {
             if(resultCode == RESULT_OK){
-                Log.e("From CAPTCHA", "WE are here");
 
-                Toast.makeText(this, "Yay! You woke up!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.yay_you_woke_up, Toast.LENGTH_SHORT).show();
 
                 // cancel the alarm
                 alarmManager.cancel(pending_intent);
 
                 // put extra string into my_intent
                 // tells the clock that you pressed the "alarm off" button
-                myIntent.putExtra("alarm_on", false);
+                myIntent.putExtra(getString(R.string.alarm_on_extra), false);
                 // also put an extra int into the alarm off section
                 // to prevent crashes in a Null Pointer Exception
-                myIntent.putExtra("music_choice", choose_sound);
+                myIntent.putExtra(getString(R.string.music_choice_extra), choose_sound);
 
                 // stop the ringtone
                 sendBroadcast(myIntent);

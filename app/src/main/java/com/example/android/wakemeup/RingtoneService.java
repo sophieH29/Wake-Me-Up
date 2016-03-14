@@ -29,10 +29,10 @@ public class RingtoneService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
 
         // fetch the extra string from the alarm on/alarm off values
-       isAlarmOn = intent.getExtras().getBoolean("alarm_on", false);
+        isAlarmOn = intent.getExtras().getBoolean(getString(R.string.alarm_on_extra), false);
 
         // fetch the whale choice integer values
-        int musicChoice = intent.getExtras().getInt("music_choice", 0);
+        int musicChoice = intent.getExtras().getInt(getString(R.string.music_choice_extra), 0);
 
         // notification
         // set up the notification service
@@ -46,9 +46,9 @@ public class RingtoneService extends Service {
 
         // make the notification parameters
         Notification notification_popup = new Notification.Builder(this)
-                .setContentTitle("An alarm is going off!")
-                .setContentText("Click me!")
-                .setSmallIcon(R.drawable.ic_action_call)
+                .setContentTitle(getString(R.string.alarm_is_going_off))
+                .setContentText(getString(R.string.click_me))
+                .setSmallIcon(R.drawable.clock)
                 .setContentIntent(pending_intent_main_activity)
                 .setAutoCancel(true)
                 .build();
@@ -78,13 +78,11 @@ public class RingtoneService extends Service {
             this.isAlarmOn = false;
        }
 
-        return START_NOT_STICKY;
+        return START_STICKY;
     }
 
     @Override
     public void onDestroy() {
-        // Tell the user we stopped.
-        Log.e("on Destroy called", "ta da");
 
         super.onDestroy();
         this.isRunning = false;

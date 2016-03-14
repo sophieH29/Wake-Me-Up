@@ -29,22 +29,22 @@
             style="?android:attr/buttonBarButtonStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:clickable="true"
             android:onClick="checkButtonClick"
             android:text="@string/Check"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:layout_weight="1" />
+            android:textAppearance="?android:attr/textAppearanceLarge" />
 
     </LinearLayout>
 
     <ImageView
         android:id="@+id/captcha_icon"
-        android:layout_below="@+id/captcha_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:adjustViewBounds="true"
-        android:layout_gravity="center_horizontal"
+        android:layout_below="@+id/captcha_input"
         android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal"
+        android:adjustViewBounds="true"
         android:scaleType="center"
         android:src="@drawable/captcha1" />
 

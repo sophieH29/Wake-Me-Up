@@ -12,6 +12,7 @@ import android.view.View;
  */
 public class MusicActivity extends AppCompatActivity {
 
+    // user's sound choice
     private int choose_sound;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,19 +28,22 @@ public class MusicActivity extends AppCompatActivity {
 
         }
 
+    // set Music choice
     public void setMusicChoice(int choice){
         choose_sound = choice;
     }
 
+    // on OK  button click
     public void okButtonClick(View v){
 
         Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra("music_choice", choose_sound);
+        intent.putExtra(getString(R.string.music_choice_extra), choose_sound);
         setResult(RESULT_OK, intent);
         finish();
 
     }
 
+    // on Cancel button click
     public void cancelButtonClick(View view) {
 
         Intent intent = new Intent(this, MainActivity.class);

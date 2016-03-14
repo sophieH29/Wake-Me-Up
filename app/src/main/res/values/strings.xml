@@ -8,6 +8,15 @@
     <string name="Check">check</string>
     <string name="music_list_label">Music List</string>
     <string name="captcha_view_label">Prove that you\'re awake</string>
+    <string name="click_me">Click me!</string>
+    <string name="alarm_is_going_off">An alarm is going off!</string>
+    <string name="music_list">Music List</string>
+    <string name="alarm_on_extra">alarm_on</string>
+    <string name="music_choice_extra">music_choice</string>
+    <string name="am">AM</string>
+    <string name="pm">PM</string>
+    <string name="yay_you_woke_up">Yay! You woke up!</string>
+    <string name="oops_try_again">Oops, try again!</string>
 
     <string-array name="music_array">
         <item>AC/DC - Rock or Bust</item>
