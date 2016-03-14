@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     TimePicker alarmTimepicker;
     Context context;
     PendingIntent pending_intent;
+    Intent myIntent;
     int choose_sound = 0 ;
 
 
@@ -58,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         final Calendar calendar = Calendar.getInstance();
 
         // create an intent to the Alarm Receiver class
-        final Intent myIntent = new Intent(this.context, AlarmReceiver.class);
+        myIntent = new Intent(this.context, AlarmReceiver.class);
 
 
         // initialize start button
@@ -141,18 +142,8 @@ public class MainActivity extends AppCompatActivity {
                 // method that changes the update text Textbox
                 showToast("Alarm OFF!");
 
-                // cancel the alarm
-                alarmManager.cancel(pending_intent);
-
-                // put extra string into my_intent
-                // tells the clock that you pressed the "alarm off" button
-                myIntent.putExtra("alarm_on", false);
-                // also put an extra int into the alarm off section
-                // to prevent crashes in a Null Pointer Exception
-                myIntent.putExtra("music_choice", choose_sound);
-
-                // stop the ringtone
-                sendBroadcast(myIntent);
+                Intent intent = new Intent(context, CaptchaActivity.class);
+                startActivityForResult(intent, 2);
             }
         });
     }
@@ -189,6 +180,26 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == 1) {
             if(resultCode == RESULT_OK){
                 choose_sound = data.getIntExtra("music_choice", 0);
+            }
+        }
+        else  if (requestCode == 2) {
+            if(resultCode == RESULT_OK){
+                Log.e("From CAPTCHA", "WE are here");
+
+                Toast.makeText(this, "Yay! You woke up!", Toast.LENGTH_SHORT).show();
+
+                // cancel the alarm
+                alarmManager.cancel(pending_intent);
+
+                // put extra string into my_intent
+                // tells the clock that you pressed the "alarm off" button
+                myIntent.putExtra("alarm_on", false);
+                // also put an extra int into the alarm off section
+                // to prevent crashes in a Null Pointer Exception
+                myIntent.putExtra("music_choice", choose_sound);
+
+                // stop the ringtone
+                sendBroadcast(myIntent);
             }
         }
     }

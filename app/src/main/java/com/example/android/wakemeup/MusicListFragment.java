@@ -25,7 +25,7 @@ public class MusicListFragment extends ListFragment {
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.music_list, container, false);
 
         // Create an array of string to be data source of the ListFragment
-        String[] datasource = getResources().getStringArray(R.array.whale_array);
+        String[] datasource = getResources().getStringArray(R.array.music_array);
 
         // Create ArrayAdapter object to wrap the data source
         adapter = new ArrayAdapter<>(getActivity(), R.layout.music_item, R.id.txtitem, datasource);
