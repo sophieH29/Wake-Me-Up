@@ -10,8 +10,19 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.android.wakemeup.CaptchaActivity">
 
+    <ImageView
+        android:id="@+id/captcha_icon"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal"
+        android:adjustViewBounds="true"
+        android:scaleType="center"
+        android:src="@drawable/captcha1" />
+
     <LinearLayout
         android:id="@+id/captcha_input"
+        android:layout_below="@+id/captcha_icon"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -21,7 +32,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            android:layout_weight="2"
+            android:layout_weight="2.5"
             android:inputType="text" />
 
         <Button
@@ -36,16 +47,5 @@
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
     </LinearLayout>
-
-    <ImageView
-        android:id="@+id/captcha_icon"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/captcha_input"
-        android:layout_centerHorizontal="true"
-        android:layout_gravity="center_horizontal"
-        android:adjustViewBounds="true"
-        android:scaleType="center"
-        android:src="@drawable/captcha1" />
 
 </RelativeLayout>

@@ -68,6 +68,7 @@ public class CaptchaActivity extends AppCompatActivity {
         }
         else {
 
+            input.setText("");
             Toast.makeText(this, R.string.oops_try_again, Toast.LENGTH_SHORT).show();
             generateCaptchaImage();
         }

@@ -27,19 +27,17 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/alarm_on"
             style="?android:attr/buttonBarButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/marginLeft"
-            android:layout_marginLeft="@dimen/marginLeft"
+            android:layout_marginStart="40dp"
+            android:layout_marginLeft="40dp"
             android:clickable="true"
             android:text="@string/OK"
             android:onClick="okButtonClick"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <Button
-            android:id="@+id/alarm_off"
             style="?android:attr/buttonBarButtonStyle"
             android:layout_marginStart="130dp"
             android:layout_marginLeft="130dp"
