@@ -78,7 +78,7 @@ public class RingtoneService extends Service {
             this.isAlarmOn = false;
        }
 
-        return START_STICKY;
+        return START_NOT_STICKY;
     }
 
     @Override
