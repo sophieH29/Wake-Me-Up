@@ -26,15 +26,15 @@ public class MusicActivity extends AppCompatActivity {
         transaction.add(android.R.id.content, musicListFragment, "musicListFragment");
         transaction.commit();
 
-        }
+    }
 
     // set Music choice
-    public void setMusicChoice(int choice){
+    public void setMusicChoice(int choice) {
         choose_sound = choice;
     }
 
     // on OK  button click
-    public void okButtonClick(View v){
+    public void okButtonClick(View v) {
 
         Intent intent = new Intent(this, MainActivity.class);
         intent.putExtra(getString(R.string.music_choice_extra), choose_sound);

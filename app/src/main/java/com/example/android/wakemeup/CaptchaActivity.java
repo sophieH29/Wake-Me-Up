@@ -23,7 +23,7 @@ public class CaptchaActivity extends AppCompatActivity {
         generateCaptchaImage();
     }
 
-    private void generateCaptchaImage(){
+    private void generateCaptchaImage() {
 
         int min = 0;
         int max = 9;
@@ -31,31 +31,42 @@ public class CaptchaActivity extends AppCompatActivity {
         Random r = new Random();
         randomNumber = r.nextInt(max - min + 1) + min;
 
-        ImageView captchaIcon = (ImageView)findViewById(R.id.captcha_icon);
+        ImageView captchaIcon = (ImageView) findViewById(R.id.captcha_icon);
 
-        switch (randomNumber){
+        switch (randomNumber) {
 
-            case 0: generatedCaptcha = R.drawable.captcha1;
+            case 0:
+                generatedCaptcha = R.drawable.captcha1;
                 break;
-            case 1: generatedCaptcha = R.drawable.captcha2;
+            case 1:
+                generatedCaptcha = R.drawable.captcha2;
                 break;
-            case 2: generatedCaptcha = R.drawable.captcha3;
+            case 2:
+                generatedCaptcha = R.drawable.captcha3;
                 break;
-            case 3: generatedCaptcha = R.drawable.captcha4;
+            case 3:
+                generatedCaptcha = R.drawable.captcha4;
                 break;
-            case 4: generatedCaptcha = R.drawable.captcha5;
+            case 4:
+                generatedCaptcha = R.drawable.captcha5;
                 break;
-            case 5: generatedCaptcha = R.drawable.captcha6;
+            case 5:
+                generatedCaptcha = R.drawable.captcha6;
                 break;
-            case 6: generatedCaptcha = R.drawable.captcha7;
+            case 6:
+                generatedCaptcha = R.drawable.captcha7;
                 break;
-            case 7: generatedCaptcha = R.drawable.captcha8;
+            case 7:
+                generatedCaptcha = R.drawable.captcha8;
                 break;
-            case 8: generatedCaptcha = R.drawable.captcha9;
+            case 8:
+                generatedCaptcha = R.drawable.captcha9;
                 break;
-            case 9: generatedCaptcha = R.drawable.captcha10;
+            case 9:
+                generatedCaptcha = R.drawable.captcha10;
                 break;
-            default:generatedCaptcha = R.drawable.captcha1;
+            default:
+                generatedCaptcha = R.drawable.captcha1;
                 break;
         }
 
@@ -64,23 +75,21 @@ public class CaptchaActivity extends AppCompatActivity {
 
     public void checkButtonClick(View view) {
 
-        EditText input = (EditText)findViewById(R.id.captcha_user_text);
+        EditText input = (EditText) findViewById(R.id.captcha_user_text);
         String captchaText = input.getText().toString();
 
         String[] captchaList = getResources().getStringArray(R.array.captcha_array);
 
-        if(captchaList[randomNumber].equals(captchaText)){
+        if (captchaList[randomNumber].equals(captchaText)) {
 
             Intent intent = new Intent(this, MainActivity.class);
             setResult(RESULT_OK, intent);
             finish();
-        }
-        else {
+        } else {
 
             input.setText("");
             Toast.makeText(this, R.string.oops_try_again, Toast.LENGTH_SHORT).show();
             generateCaptchaImage();
         }
-
     }
 }

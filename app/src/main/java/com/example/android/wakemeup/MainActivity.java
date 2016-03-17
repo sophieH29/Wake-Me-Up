@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     Context context;
     PendingIntent pending_intent;
     Intent myIntent;
-    int choose_sound = 0 ;
+    int choose_sound = 0;
 
 
     @Override
@@ -62,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
 
         // initialize start button
         final Button alarmOn = (Button) findViewById(R.id.alarm_on);
+
         // initialize the stop button
         final Button alarmOff = (Button) findViewById(R.id.alarm_off);
 
@@ -125,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
-       // create an onClick listener to stop the alarm or undo an alarm set
+        // create an onClick listener to stop the alarm or undo an alarm set
 
         alarmOff.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -176,12 +177,11 @@ public class MainActivity extends AppCompatActivity {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1) {
-            if(resultCode == RESULT_OK){
+            if (resultCode == RESULT_OK) {
                 choose_sound = data.getIntExtra(getString(R.string.music_choice_extra), 0);
             }
-        }
-        else  if (requestCode == 2) {
-            if(resultCode == RESULT_OK){
+        } else if (requestCode == 2) {
+            if (resultCode == RESULT_OK) {
 
                 Toast.makeText(this, R.string.yay_you_woke_up, Toast.LENGTH_SHORT).show();
 

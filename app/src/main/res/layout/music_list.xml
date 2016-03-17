@@ -18,7 +18,8 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="5"
-        android:drawSelectorOnTop="false" />
+        android:choiceMode="singleChoice"
+        android:descendantFocusability="beforeDescendants" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -30,24 +31,26 @@
             style="?android:attr/buttonBarButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
             android:layout_marginLeft="40dp"
+            android:layout_marginStart="40dp"
             android:clickable="true"
-            android:text="@string/OK"
             android:onClick="okButtonClick"
+            android:text="@string/OK"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <Button
             style="?android:attr/buttonBarButtonStyle"
-            android:layout_marginStart="130dp"
-            android:layout_marginLeft="130dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginLeft="130dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginStart="130dp"
+            android:choiceMode="singleChoice"
             android:clickable="true"
-            android:text="@string/Cancel"
+
             android:onClick="cancelButtonClick"
+            android:text="@string/Cancel"
             android:textAppearance="?android:attr/textAppearanceLarge" />
     </LinearLayout>
 

@@ -1,32 +1,37 @@
 package com.example.android.wakemeup;
 
 import android.annotation.TargetApi;
+import android.app.IntentService;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.app.Service;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.IBinder;
-import android.util.Log;
 
 
-public class RingtoneService extends Service {
+public class RingtoneService extends IntentService {
 
     MediaPlayer media_song;
     Boolean isAlarmOn;
     boolean isRunning;
 
+    /**
+     * Creates an IntentService.  Invoked by your subclass's constructor.
+     *
+     */
+    public RingtoneService() {
+        super("");
+    }
 
     @Override
     public IBinder onBind(Intent intent) {
         return null;
     }
 
-    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
+    protected void onHandleIntent(Intent intent) {
 
         // fetch the extra string from the alarm on/alarm off values
         isAlarmOn = intent.getExtras().getBoolean(getString(R.string.alarm_on_extra), false);
@@ -53,7 +58,7 @@ public class RingtoneService extends Service {
                 .setAutoCancel(true)
                 .build();
 
-         // if there is no music playing, and the user pressed "alarm on"
+        // if there is no music playing, and the user pressed "alarm on"
         // music should start playing
         if (!this.isRunning && isAlarmOn) {
 
@@ -62,8 +67,11 @@ public class RingtoneService extends Service {
 
             // set up the start command for the notification
             notify_manager.notify(0, notification_popup);
-
             playMusic(musicChoice);
+
+            Intent mainActivityIntent = new Intent(getApplicationContext(), MainActivity.class);
+            mainActivityIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            getApplicationContext().startActivity(mainActivityIntent);
         }
 
         // if there is music playing, and the user pressed "alarm off"
@@ -76,8 +84,15 @@ public class RingtoneService extends Service {
 
             this.isRunning = false;
             this.isAlarmOn = false;
-       }
+        }
 
+    }
+
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+
+        super.onStartCommand(intent, flags, startId);
         return START_NOT_STICKY;
     }
 
