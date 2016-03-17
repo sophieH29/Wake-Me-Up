@@ -12,8 +12,14 @@ import java.util.Random;
 
 public class CaptchaActivity extends AppCompatActivity {
 
-    int generatedCaptcha;
-    int randomNumber;
+    // random number for captcha image choice
+    private int randomNumber;
+
+    // min of random number
+    private static final int min = 0;
+
+    //max of random nmber
+    private static final int max = 9;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,56 +27,6 @@ public class CaptchaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_captcha);
 
         generateCaptchaImage();
-    }
-
-    private void generateCaptchaImage() {
-
-        int min = 0;
-        int max = 9;
-
-        Random r = new Random();
-        randomNumber = r.nextInt(max - min + 1) + min;
-
-        ImageView captchaIcon = (ImageView) findViewById(R.id.captcha_icon);
-
-        switch (randomNumber) {
-
-            case 0:
-                generatedCaptcha = R.drawable.captcha1;
-                break;
-            case 1:
-                generatedCaptcha = R.drawable.captcha2;
-                break;
-            case 2:
-                generatedCaptcha = R.drawable.captcha3;
-                break;
-            case 3:
-                generatedCaptcha = R.drawable.captcha4;
-                break;
-            case 4:
-                generatedCaptcha = R.drawable.captcha5;
-                break;
-            case 5:
-                generatedCaptcha = R.drawable.captcha6;
-                break;
-            case 6:
-                generatedCaptcha = R.drawable.captcha7;
-                break;
-            case 7:
-                generatedCaptcha = R.drawable.captcha8;
-                break;
-            case 8:
-                generatedCaptcha = R.drawable.captcha9;
-                break;
-            case 9:
-                generatedCaptcha = R.drawable.captcha10;
-                break;
-            default:
-                generatedCaptcha = R.drawable.captcha1;
-                break;
-        }
-
-        captchaIcon.setImageResource(generatedCaptcha);
     }
 
     public void checkButtonClick(View view) {
@@ -85,11 +41,41 @@ public class CaptchaActivity extends AppCompatActivity {
             Intent intent = new Intent(this, MainActivity.class);
             setResult(RESULT_OK, intent);
             finish();
+
         } else {
 
             input.setText("");
             Toast.makeText(this, R.string.oops_try_again, Toast.LENGTH_SHORT).show();
             generateCaptchaImage();
+        }
+    }
+
+    private void generateCaptchaImage() {
+
+        // captcha choice generation
+        Random r = new Random();
+        randomNumber = r.nextInt(max - min + 1) + min;
+
+        ImageView captchaIcon = (ImageView) findViewById(R.id.captcha_icon);
+
+        int[] captchaIdsList = new int[]{
+                R.drawable.captcha1,
+                R.drawable.captcha2,
+                R.drawable.captcha3,
+                R.drawable.captcha4,
+                R.drawable.captcha5,
+                R.drawable.captcha6,
+                R.drawable.captcha7,
+                R.drawable.captcha8,
+                R.drawable.captcha9,
+                R.drawable.captcha10
+        };
+
+        // default choice
+        captchaIcon.setImageResource(R.drawable.captcha1);
+
+        if(captchaIdsList.length > randomNumber) {
+            captchaIcon.setImageResource(captchaIdsList[randomNumber]);
         }
     }
 }

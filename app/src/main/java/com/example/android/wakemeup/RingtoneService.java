@@ -1,21 +1,19 @@
 package com.example.android.wakemeup;
 
-import android.annotation.TargetApi;
 import android.app.IntentService;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.media.MediaPlayer;
-import android.os.Build;
 import android.os.IBinder;
 
 
 public class RingtoneService extends IntentService {
 
-    MediaPlayer media_song;
-    Boolean isAlarmOn;
-    boolean isRunning;
+    private MediaPlayer media_song;
+    private boolean isAlarmOn;
+    private boolean isRunning;
 
     /**
      * Creates an IntentService.  Invoked by your subclass's constructor.
@@ -69,9 +67,10 @@ public class RingtoneService extends IntentService {
             notify_manager.notify(0, notification_popup);
             playMusic(musicChoice);
 
-            Intent mainActivityIntent = new Intent(getApplicationContext(), MainActivity.class);
+            Intent mainActivityIntent = new Intent(this, MainActivity.class);
             mainActivityIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            getApplicationContext().startActivity(mainActivityIntent);
+
+            this.startActivity(mainActivityIntent);
         }
 
         // if there is music playing, and the user pressed "alarm off"
@@ -88,7 +87,6 @@ public class RingtoneService extends IntentService {
 
     }
 
-    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
 
@@ -107,46 +105,34 @@ public class RingtoneService extends IntentService {
     // Play alarm music depending on user choice
     private void playMusic(int musicChoice){
 
-        switch (musicChoice){
-            case 0: media_song = MediaPlayer.create(this, R.raw.ac_dc_rock_or_bust);
-                break;
-            case 1: media_song = MediaPlayer.create(this, R.raw.ac_dc_the_jack);
-                break;
-            case 2 : media_song = MediaPlayer.create(this, R.raw.ac_dc_money_made);
-                break;
-            case 3: media_song = MediaPlayer.create(this, R.raw.airbourne_too_much);
-                break;
-            case 4: media_song = MediaPlayer.create(this, R.raw.alt_j_hunger_of_the_pine);
-                break;
-            case 5: media_song = MediaPlayer.create(this, R.raw.alt_j_fitzpleasure);
-                break;
-            case 6: media_song = MediaPlayer.create(this, R.raw.banks_waiting_game);
-                break;
-            case 7:  media_song = MediaPlayer.create(this, R.raw.ben_howard_keep_your_head_up);
-                break;
-            case 8: media_song = MediaPlayer.create(this, R.raw.beyonce_7_11);
-                break;
-            case 9: media_song = MediaPlayer.create(this, R.raw.billy_squire_the_stroke);
-                break;
-            case 10:  media_song = MediaPlayer.create(this, R.raw.black_sabbath_war_pigs);
-                break;
-            case 11: media_song = MediaPlayer.create(this, R.raw.black_sabbath_paranoid);
-                break;
-            case 12: media_song = MediaPlayer.create(this, R.raw.david_dallas_running);
-                break;
-            case 13:  media_song = MediaPlayer.create(this, R.raw.disclosure_you_and_me);
-                break;
-            case 14: media_song = MediaPlayer.create(this, R.raw.the_forest_rangers_john_the_revelator);
-                break;
-            case 15: media_song = MediaPlayer.create(this, R.raw.cellos_highway_to_hell);
-                break;
-            case 16: media_song = MediaPlayer.create(this, R.raw.cellos_wake_me_up);
-                break;
-            default: media_song = MediaPlayer.create(this, R.raw.black_sabbath_war_pigs);
-                break;
+        int[] musicIdsList = new int[]{
+                R.raw.ac_dc_rock_or_bust,
+                R.raw.ac_dc_the_jack,
+                R.raw.ac_dc_money_made,
+                R.raw.airbourne_too_much,
+                R.raw.alt_j_hunger_of_the_pine,
+                R.raw.alt_j_fitzpleasure,
+                R.raw.banks_waiting_game,
+                R.raw.ben_howard_keep_your_head_up,
+                R.raw.beyonce_7_11,
+                R.raw.billy_squire_the_stroke,
+                R.raw.black_sabbath_war_pigs,
+                R.raw.black_sabbath_paranoid,
+                R.raw.david_dallas_running,
+                R.raw.disclosure_you_and_me,
+                R.raw.the_forest_rangers_john_the_revelator,
+                R.raw.cellos_highway_to_hell,
+                R.raw.cellos_wake_me_up
+        };
+
+        //default value
+        media_song = MediaPlayer.create(this, R.raw.ac_dc_rock_or_bust);
+
+        if (musicIdsList.length > musicChoice){
+
+            media_song = MediaPlayer.create(this, musicIdsList[musicChoice]);
         }
 
         media_song.start();
     }
-
 }

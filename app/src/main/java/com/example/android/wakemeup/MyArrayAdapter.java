@@ -11,23 +11,18 @@ import android.widget.RadioButton;
  */
 public class MyArrayAdapter extends ArrayAdapter<String> {
 
-    Context mContext;
-    String[] mList;
-    int selectedIndex = -1;
+    private int selectedIndex = -1;
 
     public MyArrayAdapter(Context context, String[] list) {
-
         super(context, R.layout.music_item, R.id.txtitem, list);
-        mContext = context;
-        this.mList = list;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
         convertView = super.getView(position, convertView, parent);
-        RadioButton rbSelect = (RadioButton) convertView
-                .findViewById(R.id.radio_button);
+
+        RadioButton rbSelect = (RadioButton)convertView.findViewById(R.id.radio_button);
 
         if (selectedIndex == position) {
             rbSelect.setChecked(true);
